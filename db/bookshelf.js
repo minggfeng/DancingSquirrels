@@ -1,3 +1,4 @@
+const knex = require('knex')(require('./knexfile'));
 const bookshelf = require('bookshelf')(knex);
 
 var Users = bookshelf.Model.extend({

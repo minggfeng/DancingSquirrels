@@ -4,7 +4,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const request = Promise.promisify(require('request'));
 const parseString = require('xml2js-parser').parseString;
-const db = require('../db/index');
+const db = require('../db/db');
 
 
 const app = express();
