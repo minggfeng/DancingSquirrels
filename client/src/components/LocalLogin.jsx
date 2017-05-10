@@ -1,15 +1,7 @@
 import React from 'react';
 import $ from 'jquery';
 
-// const Signup = () => {
-//   return (
-//     <div>
-//       <h1>Sign up page!</h1>
-//     </div>
-//   );
-// };
-
-class Signup extends React.Component {
+class LocalLogin extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -35,9 +27,7 @@ class Signup extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    $.post('/signup', options ,(results) => {
-      console.log('hi!')
-    })
+    $.post('/login', options)
     e.preventDefault();
   }
 
@@ -65,4 +55,4 @@ class Signup extends React.Component {
 }
 
 
-export default Signup;
+export default LocalLogin;

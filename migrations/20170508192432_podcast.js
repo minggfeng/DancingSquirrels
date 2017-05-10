@@ -3,10 +3,13 @@ exports.up = function(knex, Promise) {
   return Promise.all([
 
       knex.schema.createTable('users', (table) => {
-      table.increments('uid').primary();
-      table.string('username');
-      table.string('password');
-      table.timestamps();
+      table.increments();
+      table.integer('googleId');
+      table.integer('facebookId');
+      table.string('username').unique().notNullable();
+      table.string('password').notNullable();
+      table.boolean('admin').notNullable().defaultTo(false);
+      table.timestamp('created_at', true).defaultTo(knex.raw('now()')).notNullable();
     }),
 
     knex.schema.createTable('podcasts', (table) => {

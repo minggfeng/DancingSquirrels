@@ -2,6 +2,9 @@ const Promise = require('bluebird');
 const request = Promise.promisify(require('request'));
 const parseString = require('xml2js-parser').parseString;
 const express = require('express');
+const passport = require('../auth.js');
+
+
 
 const router = express.Router();
 
@@ -10,14 +13,14 @@ router.route('/')
     res.status(200).sendFile('/index.html');
   })
 
-router.route('/login')
+router.route('/auth/facebook/return', passport.authenticate('facebook', { failureRedirect: '/login/facebook'}))
   .get((req, res) => {
-    res.status(200).sendFile('/login.html');
+    res.redirect('/');
   })
 
-router.route('/signup')
+router.route('/auth/google/return', passport.authenticate('google', { failureRedirect: '/login/google'}))
   .get((req, res) => {
-    res.status(200).sendFile('/signup.html');
+    res.redirect('/');
   })
 
 router.route('/search')
