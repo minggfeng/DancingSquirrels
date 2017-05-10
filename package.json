@@ -45,7 +45,6 @@
     "xml2js-parser": "^1.1.1"
   },
   "devDependencies": {
-<<<<<<< HEAD
     "babel-cli": "^6.7.5",
     "babel-core": "^6.24.1",
     "babel-loader": "^7.0.0",
@@ -56,10 +55,8 @@
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "mocha": "^3.3.0",
     "react-test-renderer": "^15.5.4",
-    "supertest": "^3.0.0"
-=======
+    "supertest": "^3.0.0",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
->>>>>>> Created LocalLogin component, updated Login component to have fields and links, updated Signup component to have fields, updated models, updated migrations table users to have google and facebook id columns, updated package.json to have the passport dependencies, created auth.js for refactoring for authentication later, updated index to include passport dependencies and to include new strategies for fb and google, updated routes to have two additional routes for fb/google authentication
   },
   "babel": {
     "presets": [
