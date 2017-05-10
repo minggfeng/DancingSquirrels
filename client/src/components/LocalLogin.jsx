@@ -27,7 +27,9 @@ class LocalLogin extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    $.post('/login', options)
+    $.post('/login', options, (results) => {
+      console.log(results)
+    })
     e.preventDefault();
   }
 

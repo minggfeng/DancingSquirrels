@@ -7,11 +7,10 @@ const passport = require('passport');
 const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
-const Users = require('../db/models/User.js');
+const User = require('../db/models/User.js');
 
 const app = express();
 app.port = process.env.PORT || 8080;
-
 
 passport.use(new FacebookStrategy({
     clientID: 343861912683387,
@@ -41,7 +40,8 @@ passport.use(new GoogleStrategy({
 
 passport.use(new LocalStrategy(
   (username, password, cb) => {
-    Users.fetchOne({ username: username })
+    console.log('!!!', User);
+    User.fetchAll()
     .then((user) => {
       if (!user) {
         return cb(null, false);
@@ -52,11 +52,6 @@ passport.use(new LocalStrategy(
     })
   }
 ))
-
-
-// app.post('/login', passport.authenticate('local', {failureRedirect: '/' }), (req, res) => {
-//   res.redirect('/');
-// })
 
 passport.serializeUser(function(user, cb) {
   cb(null, user);
@@ -87,6 +82,18 @@ app.use(passport.session());
 app.use('/', express.static(path.join(__dirname + '/../client')));
 
 app.use('/', routes);
+
+// app.post('/login', (req, res) => {
+//   console.log(req.body)
+//   passport.authenticate('local')
+
+// })
+
+app.post('/login', 
+  passport.authenticate('local', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
 
 app.listen(app.port, function () {
   console.log('Example app listening on port ' + app.port);

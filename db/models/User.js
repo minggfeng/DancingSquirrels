@@ -11,4 +11,4 @@ const Users = bookshelf.Collection.extend({
   model: User
 })
 
-module.exports = Users
+module.exports.User = User
