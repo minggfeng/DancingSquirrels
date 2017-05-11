@@ -2,13 +2,22 @@ const passport = require('passport');
 const app = require('./index.js');
 const auth = require('./auth.js')
 
-
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(auth.facebookStrategy(`http://localhost:${app.port}/auth/facebook/return`));
+var domain;
 
-passport.use(auth.googleStrategy(`http://localhost:${app.port}/auth/google/return`));
+if (app.env === 'production') {
+  domain = 'https://podiocast.herokuapp.com/';
+} else if (app.env === 'staging') {
+  domain = 'https://podiocast-staging.herokuapp.com/';
+} else {
+  domain = `http://localhost:${app.port}/`;
+}
+
+passport.use(auth.facebookStrategy(`${domain}auth/facebook/return`));
+
+passport.use(auth.googleStrategy(`${domain}auth/google/return`));
 
 passport.use(auth.localStrategy());
 
