@@ -8,7 +8,7 @@ const User = bookshelf.Model.extend({
   tableName: 'users'
 })
 
-insertOne = (username, password, cb) => {
+const insertOne = (username, password, cb) => {
   bcrypt.hash(password, saltRounds, (err, hash) => {
     User
     .forge({ username: username, password: hash })
@@ -22,7 +22,7 @@ insertOne = (username, password, cb) => {
   })
 }
 
-comparePasswords = (username, password, cb) => {
+const comparePasswords = (username, password, cb) => {
   User
   .where('username', username)
   .fetch()
