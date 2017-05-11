@@ -28,6 +28,7 @@ const Login = () => {
       </div>
     </Router>
   )
-};
+}
+
 
 export default Login;

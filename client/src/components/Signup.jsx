@@ -1,14 +1,6 @@
 import React from 'react';
 import $ from 'jquery';
 
-// const Signup = () => {
-//   return (
-//     <div>
-//       <h1>Sign up page!</h1>
-//     </div>
-//   );
-// };
-
 class Signup extends React.Component {
   constructor(props) {
     super(props)
@@ -16,7 +8,6 @@ class Signup extends React.Component {
       username: '',
       password: ''
     };
-
     this.handleUsernameChange = this.handleUsernameChange.bind(this);
     this.handlePasswordChange = this.handlePasswordChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -35,8 +26,13 @@ class Signup extends React.Component {
       username: this.state.username,
       password: this.state.password
     }
-    $.post('/signup', options ,(results) => {
-      console.log('hi!')
+    $.post('/signup', options, (results) => {
+      if (results === 'error') {
+        alert('Username already in use. Please select another one.');
+      }
+      if (results === 'success') {
+        this.props.history.push('/login/local')
+      }
     })
     e.preventDefault();
   }

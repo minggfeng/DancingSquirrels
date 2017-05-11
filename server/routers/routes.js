@@ -2,9 +2,11 @@ const Promise = require('bluebird');
 const request = Promise.promisify(require('request'));
 const parseString = require('xml2js-parser').parseString;
 const express = require('express');
-const passport = require('../auth.js');
+const UserModel = require('../../db/models/User.js');
+const passport = require('passport');
+const bcrypt = require('bcrypt');
 
-
+const saltRounds = 10;
 
 const router = express.Router();
 
@@ -13,14 +15,26 @@ router.route('/')
     res.status(200).sendFile('/index.html');
   })
 
-router.route('/auth/facebook/return', passport.authenticate('facebook', { failureRedirect: '/login/facebook'}))
+router.route('/login/local')
   .get((req, res) => {
-    res.redirect('/');
+    res.redirect('/#/local/login')
   })
 
-router.route('/auth/google/return', passport.authenticate('google', { failureRedirect: '/login/google'}))
-  .get((req, res) => {
-    res.redirect('/');
+router.route('/signup')
+  .post((req, res) => {
+    let username = req.body.username;
+    let password = req.body.password;
+    bcrypt.hash(password, saltRounds, (err, hash) => {
+      UserModel.User
+      .forge({ username: username, password: hash })
+      .save()
+      .then((data) => {
+        res.send('success');
+      })
+      .catch((err) => {
+        res.send('error');
+      })
+    })
   })
 
 router.route('/search')

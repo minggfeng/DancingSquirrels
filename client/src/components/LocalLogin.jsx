@@ -9,46 +9,48 @@ class LocalLogin extends React.Component {
       password: ''
     };
 
-    this.handleUsernameChange = this.handleUsernameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    this.localLoginUsernameChange = this.localLoginUsernameChange.bind(this);
+    this.localLoginPasswordChange = this.localLoginPasswordChange.bind(this);
+    this.localLoginSubmit = this.localLoginSubmit.bind(this);
   }
 
-  handleUsernameChange(e) {
+  localLoginUsernameChange(e) {
     this.setState({ username: e.target.value });
   }
 
-  handlePasswordChange(e) {
+  localLoginPasswordChange(e) {
     this.setState({ password: e.target.value });
   }
 
-  handleSubmit(e) {
+  localLoginSubmit(e) {
     let options = {
       username: this.state.username,
       password: this.state.password
     }
-    $.post('/login', options, (results) => {
-      console.log(results)
-    })
+    $.post('/login/local', options, (results) => {
+      if (results === 'validPassword') {
+        this.props.history.push('/');
+      }
+    });
     e.preventDefault();
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} >
+      <form onSubmit={this.localLoginSubmit} >
         <label>
         Username:
         <input type="text" 
           name="username" 
           value={this.state.username} 
-          onChange={this.handleUsernameChange} />
+          onChange={this.localLoginUsernameChange} />
         </label>
         <label>
         Password:
         <input type="text" 
           name="password" 
           value={this.state.password} 
-          onChange={this.handlePasswordChange} />
+          onChange={this.localLoginPasswordChange} />
         </label>
         <input type="submit" value="Submit" />
       </form>
