@@ -16,6 +16,9 @@ const Login = () => {
               <a href="/login/google">Login with Google</a>
             </li>
             <li>
+              <a href="/login/github">Login with GitHub</a>
+            </li>
+            <li>
               <Link to="/login/local">Login to Account</Link>
             </li>
             <li>

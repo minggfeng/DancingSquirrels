@@ -19,6 +19,8 @@ passport.use(auth.facebookStrategy(`${domain}auth/facebook/return`));
 
 passport.use(auth.googleStrategy(`${domain}auth/google/return`));
 
+passport.use(auth.githubStrategy(`${domain}auth/github/return`));
+
 passport.use(auth.localStrategy());
 
 passport.serializeUser(function(user, cb) {
@@ -36,6 +38,8 @@ app.get('/login/google', passport.authenticate('google', {
       'https://www.googleapis.com/auth/plus.profile.emails.read' ]
 }));
 
+app.get('/login/github', passport.authenticate('github'));
+
 app.get('/login/local', passport.authenticate('local'));
 
 app.get('/auth/facebook/return',
@@ -50,6 +54,11 @@ app.get('/auth/google/return',
     res.redirect('/#/');
   });
 
+app.get('/auth/github/return',
+  passport.authenticate('github', { failureRedirect: '/login/github' }),
+  function(req, res) {
+    res.redirect('/#/');
+  });
 
 app.post('/login/local', 
   passport.authenticate('local', { failureRedirect: '/login/local' }),
