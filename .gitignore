@@ -29,3 +29,6 @@ node_modules/
 bower_components/
 
 .DS_Store
+
+#client ids and secrets
+server/env/config.js

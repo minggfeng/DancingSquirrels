@@ -4,11 +4,12 @@ const FacebookStrategy = require('passport-facebook').Strategy;
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
 const LocalStrategy = require('passport-local').Strategy;
 const UserModel = require('../db/models/User.js');
+const config = require('./env/config.js');
 
 const facebookStrategy = (callbackURL) => {
   return new FacebookStrategy({
-    clientID: 343861912683387,
-    clientSecret: 'b27751166b7231c39db513ae083319d9',
+    clientID: config.FACEBOOK.ID,
+    clientSecret: config.FACEBOOK.SECRET,
     callbackURL: callbackURL,
     passReqToCallback: true
   },
@@ -19,8 +20,8 @@ const facebookStrategy = (callbackURL) => {
 
 const googleStrategy = (callbackURL) => {
   return new GoogleStrategy({
-    clientID: '151503092115-rhqu4imiqagpc4s30eimt72oi9g41152.apps.googleusercontent.com',
-    clientSecret: 'iqPpvTu14XmKOgZss4ZfHtkA',
+    clientID: config.GOOGLE.ID,
+    clientSecret: config.GOOGLE.SECRET,
     callbackURL: callbackURL,
     passReqToCallback: true
   },
