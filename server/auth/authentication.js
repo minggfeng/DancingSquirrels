@@ -40,6 +40,8 @@ app.get('/auth/facebook/return',
     req.session.regenerate((err) => {
       if (err) {
         console.error(err);
+      } else {
+        
       }
     })
     res.redirect(`/#/user/${req.session.passport.user}`);

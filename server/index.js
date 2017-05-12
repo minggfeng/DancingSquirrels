@@ -4,6 +4,7 @@ const db = require('../db/db.js');
 const routes = require('./routers/routes.js');
 const express = require('express');
 const session = require('express-session');
+const authHelpers = require('./auth/authHelpers.js');
 
 const app = module.exports = express();
 
@@ -21,7 +22,7 @@ app.use(session({
   cookie: { maxAge: 60000 }
 }));
 
-app.use('/', express.static(path.join(__dirname + '/../client')));
+app.use(authHelpers.verifySession, express.static(path.join(__dirname + '/../client')));
 
 app.use('/', routes);
 

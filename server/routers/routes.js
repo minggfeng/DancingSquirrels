@@ -9,6 +9,11 @@ router.route('/')
     res.status(200).sendFile('/index.html');
   })
 
+router.route('/logout')
+  .get((req, res) => {
+    
+  })
+
 router.route('/topTen')
   .get((req, res) => {
     utils.fetchTopTen((err, results) => {

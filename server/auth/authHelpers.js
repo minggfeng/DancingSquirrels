@@ -17,4 +17,17 @@ const insertExternal = (profile) => {
   })
 }
 
+const verifySession = (req, res, next) => {
+  console.log('!!req.url', req.url);
+  if (req.url === '/') {
+    next();
+  } 
+
+}
+
+const sessionHandler = (req) => {
+  req.session.regenerate((err))
+}
+
 module.exports.insertExternal = insertExternal;
+module.exports.verifySession = verifySession;
