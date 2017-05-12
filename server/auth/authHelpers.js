@@ -19,24 +19,8 @@ const insertExternal = (profile) => {
 }
 
 const verifySession = (req, res, next) => {
-  console.log(req)
-  console.log('entering user', req.url.includes('/user/'))
-  if (req.url.includes('/#/user/')) {
-    let sess = req.session;
-    sessionHelpers.store.get(sess.id, (err, session) => {
-      if (err) {
-        res.redirect('/#/login');
-      }
-      if (session) {
-        next();
-      } else if (!session) {
-        res.redirect('/#/login');
-      }
-      next();
-    })
-  } else {
-    next();
-  }
+  console.log(req.params)
+  next();
 }
 
 const sessionHandler = (req) => {

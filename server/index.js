@@ -7,7 +7,6 @@ const session = require('express-session');
 const authHelpers = require('./auth/authHelpers.js');
 const sessionHelpers = require('./auth/sessionHelpers.js');
 
-
 const app = module.exports = express();
 
 app.port = process.env.PORT || 8080;
