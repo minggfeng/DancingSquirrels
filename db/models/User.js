@@ -27,7 +27,6 @@ const fetchOneExternal = (username, password, cb) => {
   .where('username', username)
   .fetch()
   .then((user) => {
-    console.log(user)
     if (!user) {
       return cb(null, null);
     } else {

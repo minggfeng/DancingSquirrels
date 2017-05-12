@@ -1,6 +1,7 @@
 const express = require('express');
 const UserModel = require('../../db/models/User.js');
 const utils = require('../utils.js');
+const authHelpers = require('../auth/authHelpers.js');
 
 const router = express.Router();
 
