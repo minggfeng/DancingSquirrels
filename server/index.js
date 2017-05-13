@@ -24,7 +24,7 @@ app.use(session({
   cookie: { maxAge: 60000 }
 }));
 
-app.use(authHelpers.verifySession, express.static(path.join(__dirname + '/../client')));
+app.use('/', express.static(path.join(__dirname + '/../client')));
 
 app.use('/', routes);
 
