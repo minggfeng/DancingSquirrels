@@ -23,6 +23,7 @@ router.route('/logout')
   .get((req, res) => {
     sessionHelpers.store.destroy(req.sessionID);
     req.session.destroy();
+    res.redirect('/');
   })
 
 router.route('/topTen')
@@ -40,7 +41,6 @@ router.route('/topTen')
           res.send(results);
         }
       })
-
     })
   })
 

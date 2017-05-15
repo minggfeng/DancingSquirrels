@@ -9,6 +9,7 @@ import Search from './components/Search.jsx';
 import Signup from './components/Signup.jsx';
 import ReactRouter from 'react-router';
 import LocalLogin from './components/LocalLogin.jsx';
+import NoMatch from './components/NoMatch.jsx';
 
 import { HashRouter as Router, Route, Switch } from 'react-router-dom';
 
@@ -140,6 +141,7 @@ class App extends React.Component {
                                   podcasts={this.state.podcasts}
                                   onClickPodcast={this.onClickPodcast} 
                                   currentPodcastView={this.state.currentPodcastView} />)} />
+            <Route component={NoMatch}/>
 
 
           </Switch>
