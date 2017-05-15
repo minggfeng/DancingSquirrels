@@ -5,8 +5,6 @@ const TopTen = bookshelf.Model.extend({
   tableName: 'top_ten'
 });
 
-
-
 const fetchCollection = (cb) => {
   TopTen
   .collection()
@@ -28,28 +26,5 @@ const insertOne = (results, cb) => {
   })
 }
 
-// const clearResults = (cb) => {
-//   TopTen
-//   .destroy()
-//   .then((data) => {
-//     return cb(null, data);
-//   })
-//   .catch((err) => {
-//     return cb(err, null);
-//   })
-// }
-
-// const fetch = (cb) => {
-//   TopTen
-//   .fetchAll()
-//   .then((data) => {
-//     return cb(null, data);
-//   })
-//   .catch((err) => {
-//     return cb(err, null);
-//   })
-// }
-
 module.exports.insertOne = insertOne;
-// module.exports.clearResults = clearResults;
 module.exports.fetchCollection = fetchCollection;

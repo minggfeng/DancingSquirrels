@@ -26,21 +26,19 @@ router.route('/logout')
   })
 
 router.route('/topTen')
-  // .get((req, res) => {
-  //   utils.fetchTopTen((err, results) => {
-  //     if (results) {
-  //       res.send(results);
-  //     }
-  //   });
-  // });
   .get((req, res) => {
     TopTenModel.fetchCollection((collection) => {
       Promise.map(collection.models, (model) => {
-        console.log(model.attributes)
         return JSON.parse(model.attributes.results);
       })
       .then((results) => {
-        res.send(results);
+        if (results.length === 0) {
+          utils.fetchTopTen((err, topTen) => {
+            res.send(topTen)
+          })
+        } else {
+          res.send(results);
+        }
       })
 
     })
