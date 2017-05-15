@@ -43,13 +43,13 @@ class LocalLogin extends React.Component {
       <div className="loginForms">
         <h3>Login</h3>
         <form onSubmit={this.localLoginSubmit} >
-          <label>Username</label> 
+          <label className="loginLabel">Username</label> 
           <input type="text" 
             name="username" 
             value={this.state.username} 
             onChange={this.localLoginUsernameChange} />
           <br></br>
-          <label>Password</label> 
+          <label className="loginLabel">Password</label> 
           <input type="text" 
             name="password" 
             value={this.state.password} 

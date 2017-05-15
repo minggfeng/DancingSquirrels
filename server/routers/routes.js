@@ -9,6 +9,8 @@ const passport = require('passport');
 const authHelpers = require('../auth/authHelpers.js');
 const sessionHelpers = require('../auth/sessionHelpers.js');
 const SessionModel = require('../../db/models/Session.js');
+const TopTenModel = require('../../db/models/TopTen.js');
+const Promise = require('bluebird');
 
 const router = express.Router();
 
@@ -24,13 +26,25 @@ router.route('/logout')
   })
 
 router.route('/topTen')
+  // .get((req, res) => {
+  //   utils.fetchTopTen((err, results) => {
+  //     if (results) {
+  //       res.send(results);
+  //     }
+  //   });
+  // });
   .get((req, res) => {
-    utils.fetchTopTen((err, results) => {
-      if (results) {
+    TopTenModel.fetchCollection((collection) => {
+      Promise.map(collection.models, (model) => {
+        console.log(model.attributes)
+        return JSON.parse(model.attributes.results);
+      })
+      .then((results) => {
         res.send(results);
-      }
-    });
-  });
+      })
+
+    })
+  })
 
 router.route('/favorite/:id')
   .delete((req, res) => {

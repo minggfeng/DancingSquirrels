@@ -2,7 +2,7 @@
 exports.up = function(knex, Promise) {
   return Promise.all([
 
-    knex.schema.createTable('users', (table) => {
+    knex.schema.createTableIfNotExists('users', (table) => {
       table.increments();
       table.string('googleId');
       table.string('facebookId');
@@ -13,28 +13,6 @@ exports.up = function(knex, Promise) {
       table.timestamp('created_at', true).defaultTo(knex.raw('now()')).notNullable();
     }),
 
-    knex.schema.createTable('podcasts', (table) => {
-      table.increments('collectionId').primary().unique();
-      table.string('collectionName');
-      table.string('feedUrl');
-      table.string('artistName');
-    }),
-
-    knex.schema.createTable('episodes', (table) => {
-      table.increments('id').primary();
-      table.string('title');
-      table.string('url');
-      table.string('duration');
-      table.string('pubDate');
-      table.integer('collectionId');
-    }),
-
-    knex.schema.createTable('user_episodes', (table) => {
-      table.increments('id').primary();
-      table.integer('user_id');
-      table.integer('podcast_id');
-    }),
-
     knex.schema.createTableIfNotExists('sessions', (table) => {
       table.string('sid').notNullable().collate('default');
       table.json('sess').notNullable();
@@ -42,13 +20,13 @@ exports.up = function(knex, Promise) {
 
     }),
 
-    knex.schema.createTable('user_sessions', (table) => {
+    knex.schema.createTableIfNotExists('user_sessions', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
       table.string('sid');
     }),
 
-    knex.schema.createTable('user_podcast', (table) => {
+    knex.schema.createTableIfNotExists('user_podcast', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
       table.integer('podcast_id');
@@ -56,7 +34,7 @@ exports.up = function(knex, Promise) {
       table.boolean('favorite');
     }),
 
-    knex.schema.createTable('reviews', (table) => {
+    knex.schema.createTableIfNotExists('reviews', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
       table.integer('podcast_id');
@@ -64,7 +42,7 @@ exports.up = function(knex, Promise) {
       table.string('review');
     }),
 
-    knex.schema.createTable('user_favorite_podcasts', (table) => {
+    knex.schema.createTableIfNotExists('user_favorite_podcasts', (table) => {
       table.increments('id').primary();
       table.integer('user_id');
       table.string('feedUrl');
@@ -72,8 +50,12 @@ exports.up = function(knex, Promise) {
       table.string('artworkUrl100');
       table.string('collectionName');
       table.string('artistName');
-    })
+    }),
 
+    knex.schema.createTableIfNotExists('top_ten', (table) => {
+      table.increments('id').primary();
+      table.string('results', 5000);
+    })
   ]);
 };
 
@@ -87,5 +69,6 @@ exports.down = function(knex, Promise) {
         knex.schema.dropTable('user_podcast'),
         knex.schema.dropTable('user_favorite_podcasts'),
         knex.schema.dropTable('reviews'),
+        knex.schema.dropTable('top_ten')
     ])
 };

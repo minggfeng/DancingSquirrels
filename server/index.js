@@ -1,3 +1,4 @@
+const worker = require('./worker.js');
 const bodyParser = require('body-parser');
 const path = require('path');
 const knex = require('../db/db.js');
