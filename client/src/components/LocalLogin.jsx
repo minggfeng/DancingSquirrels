@@ -55,7 +55,7 @@ class LocalLogin extends React.Component {
             value={this.state.password} 
             onChange={this.localLoginPasswordChange} />
           <br></br>
-          <input className="submit" type="submit" value="Submit" />
+          <input className="loginSubmit" type="submit" value="Submit" />
         </form>
       </div>
     )

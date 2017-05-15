@@ -138,7 +138,8 @@ class App extends React.Component {
             <Route path="/logout" component={() => (<PodcastMain
                                   onSearch={this.onSearch}
                                   podcasts={this.state.podcasts}
-                                  onClickPodcast={this.onClickPodcast}/> )} />
+                                  onClickPodcast={this.onClickPodcast} 
+                                  currentPodcastView={this.state.currentPodcastView} />)} />
 
 
           </Switch>
