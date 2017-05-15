@@ -21,7 +21,7 @@ const resetTopTen = (models) => {
 }
 
 const topTenJob = new CronJob({
-  cronTime: '00 * * * * *',
+  cronTime: '00 00 00 * * 0-6',
   onTick: function() {
     console.log('worker');
     utils.fetchTopTen((err, podcasts) => {
