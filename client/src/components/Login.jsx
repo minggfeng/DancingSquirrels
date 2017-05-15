@@ -9,17 +9,17 @@ const Login = () => {
     <Router>    
       <div className="loginForms">
         <div>
-          <div>
+          <div className="authButtons">
             <a href="/login/facebook">
-              <img src="https://scontent.fsnc1-4.fna.fbcdn.net/v/t39.2365-6/16344632_403881753293914_7761668832074137600_n.png?oh=5c9cd7483ae09e1bb47951d3a4d70749&amp;oe=59BE20ED" alt="" width="300"/>
+              <img src="https://i.stack.imgur.com/Vk9SO.png" width="300"/>
             </a>
           </div>
-          <div>
+          <div className="authButtons">
             <a href="/login/google">
-              <img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" width="300"/>
+              <img src="https://i.stack.imgur.com/XzoRm.png" width="300"/>
             </a>
           </div>
-          <div>
+          <div className="authButtons">
             <a href="/login/github"><img src='https://help.dropsource.com/wp-content/uploads/sites/4/2017/02/gh-login-button.png' width ="300"/></a>
           </div>
           <div className="login">

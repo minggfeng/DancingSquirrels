@@ -307,8 +307,8 @@ input[type="radio"]:checked ~ label {
 }
 
 .loginForms {
-  margin: auto;
-  width: 500px;
+  margin-left: 37%;
+  width: 50%;
 }
 
 .loginSubmit {
@@ -327,6 +327,10 @@ input[type="radio"]:checked ~ label {
 .loginLabel {
   margin: 10px;
   width: 100px;
+}
+
+.authButtons {
+  margin-bottom: 10px;
 }
 /* Podcast */
 
